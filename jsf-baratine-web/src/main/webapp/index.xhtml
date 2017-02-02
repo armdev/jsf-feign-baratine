@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"    
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"     
+      xmlns:jsf="http://xmlns.jcp.org/jsf"    
+      xmlns:passthrough="http://xmlns.jcp.org/jsf/passthrough"     
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"> 
+
+    <h:body>
+        <f:view contracts="default" transient="false">
+               <style>
+                    .ui-growl {
+                        position:fixed;
+                        bottom: 30% !important;
+                        left: 65%;
+                        width: 500px;
+                        z-index:9999;
+                    }
+                </style>
+            <ui:composition template="/template.xhtml">      
+             
+                <ui:define name="content">
+                    <style>
+                        .ds-btn li{ list-style:none; float:left; padding:10px; }
+                        .ds-btn li a span{padding-left:15px;padding-right:5px;width:100%;display:inline-block; text-align:left;}
+                        .ds-btn li a span small{width:100%; display:inline-block; text-align:left;}
+                    </style>
+                    <br/>
+                    <div class="container">                      
+                        <div class="row">
+                            <h3>Health Checks</h3>
+                            <ul class="ds-btn">
+                                <p:growl id="growl-success"  showDetail="true"  sticky="true"/>    
+                                <li>
+                                    <h:form prependId="false">                                      
+                                        <span>Twitter Status<br/>
+                                            <small>
+                                                <p:commandButton value="Check Every hour !" icon="fa fa-twitter-square"
+                                                                 ajax="true" update="growl-success" 
+                                                                 action="#{healthBean.doTwitter()}"/>
+                                            </small>
+                                        </span>                                       
+                                    </h:form>
+                                </li>
+                                <li>
+                                    <h:form prependId="false">                                   
+                                        <p:spacer/>
+                                        <span>Facebook Status<br/>
+                                            <small>
+                                                <p:commandButton value="Check every day !"  icon="fa fa-facebook-square"
+                                                                 ajax="true" update="growl-success"
+                                                                 action="#{healthBean.doFacebook()}">                                                      
+                                                </p:commandButton>
+                                            </small>
+                                        </span>                                       
+                                    </h:form>
+                                </li>         
+                                <li>
+                                    <h:form prependId="false">                                   
+                                        <p:spacer/>
+                                        <span>Rocket  Status<br/>
+                                            <small>
+                                                <p:commandButton value="Check Right Now !!!"  icon="fa fa-rocket"
+                                                                 ajax="true" update="growl-success"
+                                                                 action="#{healthBean.doRocket()}">                                                      
+                                                </p:commandButton>
+                                            </small>
+                                        </span>                                       
+                                    </h:form>
+                                </li>         
+                            </ul>
+                        </div><!-- /.container -->
+                    </div><!-- /.container -->
+                </ui:define>
+            </ui:composition>
+        </f:view>
+    </h:body>
+</html>
+
